@@ -90,7 +90,7 @@ main {
 .user-form div {
     display: flex;
     flex-direction: column;
-    padding: 20px 0px 50px 30px;
+    padding: 20px 0px 50px 0px;
     flex-wrap: wrap;
 }
 input{
@@ -112,6 +112,16 @@ button {
     box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+.projecten p{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px 0px 0px;
+    flex-wrap: wrap;
+}
+
+.projecten button{
+    margin-bottom: 50px;
+}
 footer {
     background-color: #333333;
     color: #e6f7ff;
