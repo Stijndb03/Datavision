@@ -113,6 +113,10 @@ button {
     box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 .projecten p{
     display: flex;
     flex-direction: column;
