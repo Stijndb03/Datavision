@@ -37,7 +37,7 @@ a {
     font-weight: bold;
 }
 
-a:hover {
+.hover:hover {
     background-color: #626262;
     color:#e6f7ff;
 }
