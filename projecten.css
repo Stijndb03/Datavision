@@ -73,6 +73,7 @@ header p{
 .projecten{
     display:flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .projectbalk{
