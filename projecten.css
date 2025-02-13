@@ -82,11 +82,11 @@ header p{
     border-radius: 20px;
     box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.2);
     margin: 10px;
-    width:320px;
+    width:300px;
 }
 .projectbalk img{
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
     margin: 10px 0px 10px 0px;
 }
 .projectbalk p{
