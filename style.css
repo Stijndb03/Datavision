@@ -11,6 +11,10 @@ html{
 body{
     background-color: #f7f6ed;
 }
+ul{
+    display: flex;
+    list-style: none;
+}
 
 .navbalk {
     position: fixed;
@@ -144,5 +148,9 @@ footer p{
     .Wie-zijn-wij{
         display:flex;
         flex-wrap: wrap;
+    }
+    .divicon{
+        text-align: center;
+        width: 100%;
     }
 }
