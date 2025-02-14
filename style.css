@@ -109,6 +109,10 @@ textarea{
 .user-form p {
     margin-top: 10px;
 }
+.verzenden{
+    display: flex;
+    margin-bottom: 20px;
+}
 
 button {
     background-color:#D4101C ;

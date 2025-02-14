@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulier Website</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">Formulier</h2>
+        <select id="formType" onchange="changeFormType()" required>
+            <option value="">Kies Hier</option>
+            <option value="personal">Persoonlijk</option>
+            <option value="business">Bedrijf</option>
+            <option value="quote">Offerte</option>
+        </select>
+
+        <legend class="text-input">Naam</legend>
+        <div class="input-group"><input type="text" name="name" id="name" placeholder="Stan Dragt..." required></div>
+
+        <legend class="text-input">E-mail</legend>
+        <div class="input-group"><input type="email" name="email" id="email" placeholder="DataVision@gmail.com..." required></div>
+
+        <form id="dynamicForm">
+            <div id="formFields"></div>
+
+            <!-- Checkbox links van de tekst -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" required disabled>
+                <label for="terms">Ik accepteer de <a href="voorwaarden.html" target="_blank">voorwaarden</a></label>
+            </div>
+
+            <button type="submit" id="submitBtn" disabled>Verzenden</button>
+        </form>
+    </div>
+
+    <script>
+        function changeFormType() {
+            const formFields = document.getElementById("formFields");
+            formFields.innerHTML = "";
+            const formType = document.getElementById("formType").value;
+
+            if (formType === "personal") {
+                formFields.innerHTML = `
+                    <legend class="text-input">Bericht</legend>
+                    <div class="input-group"><textarea name="message" id="message" placeholder="Schrijf hier..." required></textarea></div>
+                `;
+            } else if (formType === "business") {
+                formFields.innerHTML = `
+                    <legend class="text-input">Bedrijfsnaam</legend>
+                    <div class="input-group"><input type="text" name="company" id="company" placeholder="DataVision..." required></div>
+                    <legend class="text-input">Telefoonnummer</legend>
+                    <div class="input-group"><input type="tel" name="phone" id="phone" placeholder="0624979817..." required></div>
+                    <div class="input-group">
+                        <select name="employees" id="employees" required onchange="toggleEmployeeField()">
+                            <option value="1-5">1-5 medewerkers</option>
+                            <option value="6-20">6-20 medewerkers</option>
+                            <option value="21-50">21-50 medewerkers</option>
+                            <option value="51+">51+ medewerkers</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="extraEmployeesField" style="display: none;">
+                        <input type="number" name="extraEmployees" id="extraEmployees" placeholder="Aantal medewerkers">
+                    </div>
+                `;
+            } else if (formType === "quote") {
+                formFields.innerHTML = `
+                    <legend class="text-input">Projectnaam</legend>
+                    <div class="input-group"><input type="text" name="project" id="project" placeholder="Project123" required></div>
+                    <div class="input-group">
+                        <label>Gewenste diensten:</label>
+                        <div class="wrap">
+                            <div><input type="checkbox" name="services" value="webdesign" required> Webdesign</div>
+                            <div><input type="checkbox" name="services" value="development" required> Web ontwikkeling</div>
+                            <div><input type="checkbox" name="services" value="uxui" required> UX/UI</div>
+                            <div><input type="checkbox" name="services" value="seo" required> SEO optimalisatie</div>
+                            <div><input type="checkbox" id="otherService" name="services" value="other" onchange="toggleOtherService()"> Anders</div>
+                        </div>
+                    </div>
+                    <div class="input-group" id="otherServiceField" style="display: none;">
+                        <input type="text" name="otherServiceDetails" id="otherServiceDetails" placeholder="Specificeer andere dienst">
+                    </div>
+                    <div class="input-group">
+                        <select name="budget" required>
+                            <option value="1000-5000">€1000 - €5000</option>
+                            <option value="5001-10000">€5001 - €10000</option>
+                            <option value="10000+">€10000+</option>
+                        </select>
+                    </div>
+                `;
+            }
+
+            updateValidation();
+        }
+
+        function toggleEmployeeField() {
+            // Controleren of "51+" is geselecteerd
+            const extraEmployeesField = document.getElementById("extraEmployeesField");
+            if (document.getElementById("employees").value === "51+") {
+                extraEmployeesField.style.display = "block";
+            } else {
+                extraEmployeesField.style.display = "none";
+            }
+        }
+
+        function toggleOtherService() {
+            // Controleren of "Anders" is geselecteerd
+            const otherServiceField = document.getElementById("otherServiceField");
+            otherServiceField.style.display = document.getElementById("otherService").checked ? "block" : "none";
+        }
+
+        function updateValidation() {
+            const form = document.getElementById("dynamicForm");
+            const checkbox = document.getElementById("terms");
+            const submitBtn = document.getElementById("submitBtn");
+
+            function checkInputs() {
+                const inputs = form.querySelectorAll("input[required], select[required], textarea[required]");
+                let allFilled = Array.from(inputs).every(input => input.value.trim() !== "");
+
+                checkbox.disabled = !allFilled;
+                submitBtn.disabled = !allFilled || !checkbox.checked;
+            }
+
+            form.addEventListener("input", checkInputs);
+            checkbox.addEventListener("change", () => {
+                submitBtn.disabled = !checkbox.checked;
+            });
+
+            checkInputs();
+        }
+
+        document.addEventListener("DOMContentLoaded", updateValidation);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
