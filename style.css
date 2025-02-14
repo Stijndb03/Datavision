@@ -102,6 +102,9 @@ input{
     width: 50%;
     height: 30px;
 }
+textarea{
+    width:50%;
+}
 
 .user-form p {
     margin-top: 10px;
