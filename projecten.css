@@ -48,8 +48,7 @@ ul{
 }
 
 .hover:hover {
-    background-color: #626262;
-    color:#e6f7ff;
+    color: #626262;  
 }
 
 h1 {
@@ -110,6 +109,8 @@ button {
 
 button:hover{
     cursor: pointer;
+    color:#D4101C;
+    background-color: #f7f6ed;
 }
 
 footer {
